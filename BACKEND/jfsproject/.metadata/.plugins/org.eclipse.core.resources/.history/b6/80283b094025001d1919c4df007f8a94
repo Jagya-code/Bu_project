@@ -1,0 +1,48 @@
+package com.bookinginfoservice.resource;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.bookinginfoservice.model.Booking;
+import com.bookinginfoservice.model.Ticket;
+import com.bookinginfoservice.model.User;
+import com.bookinginfoservice.service.TicketService;
+
+@RestController
+@RequestMapping("/ticket")
+public class TicketController {
+
+	@Autowired
+	private TicketService tservice;
+	@Autowired
+	RestTemplate resttemplate;
+
+	@GetMapping("/getTicketDetails/{id}")
+	public Ticket getAllTicketDetailById(@PathVariable("id") int id) {
+		User user = resttemplate.getForObject("http://localhost:8032/user/ga/{userId}", User.class);
+		Booking book = resttemplate.getForObject("http://localhost:8041/bookingdetails/ga/{id}}", Booking.class);
+//		Optional<Booking> op=bservice.findById(id);
+//		Booking b=op.get();
+//		if(op.isPresent()) {
+//			
+//			return b;
+//		}
+//		else {
+//			return null;
+//		}
+		Optional<Ticket> op = tservice.finById(id);
+		Ticket t = op.get();
+		if (op.isPresent()) {
+			return t;
+		} else
+			return null;
+
+	}
+
+}

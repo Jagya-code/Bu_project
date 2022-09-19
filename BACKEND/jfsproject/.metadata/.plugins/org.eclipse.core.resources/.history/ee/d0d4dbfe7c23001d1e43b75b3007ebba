@@ -1,0 +1,28 @@
+package com.traininfoservice.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.traininfoservice.model.Train;
+import com.traininfoservice.repository.TrainsRepository;
+
+@Service
+public class TrainService {
+	@Autowired
+	TrainsRepository trepo;
+
+	public Optional<Train> findById(String train_no) {
+		return trepo.findById(train_no);
+	}
+
+	public Train insert(Train train) {
+		// TODO Auto-generated method stub
+		Train t=trepo.save(train);
+		return t;
+	}
+	
+	
+
+}

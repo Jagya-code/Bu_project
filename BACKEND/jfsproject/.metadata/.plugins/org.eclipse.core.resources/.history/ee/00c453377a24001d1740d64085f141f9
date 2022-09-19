@@ -1,0 +1,37 @@
+package com.handlerinfo.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.handlerinfo.model.Admin;
+
+import com.handlerinfo.repository.AdminRepository;
+
+@Service
+public class AdminServices {
+	@Autowired
+	AdminRepository adminrepo;
+	
+
+	public Optional<Admin> findById(int id) {
+		// TODO Auto-generated method stub
+		return adminrepo.findById(id);
+	}
+
+
+	public Admin save(Admin admin) {
+		// TODO Auto-generated method stub
+		Admin a= adminrepo.save(admin);
+		return a;
+	}
+
+
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		adminrepo.deleteById(id);
+		
+	}
+
+}

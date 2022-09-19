@@ -1,0 +1,11 @@
+package com.traininfoservice.repository;
+
+import com.traininfoservice.model.Train;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface TrainsRepository extends CrudRepository<Train,String> {
+
+}

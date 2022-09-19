@@ -1,0 +1,118 @@
+package com.handlerinfo.model;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+@Document
+public class User {
+	@Id
+	private int userId;
+	@Field
+	private String fname;
+	@Field
+	private String lname;
+	@Field
+	private String emailId;
+	@Field
+	private int age;
+	@Field
+	private long ph;
+	@Field
+	private String gender;
+	
+	
+	public User() {
+		super();
+	}
+
+
+	public User(int userId, String fname, String lname, String emailId, int age, long ph, String gender) {
+		super();
+		this.userId = userId;
+		this.fname = fname;
+		this.lname = lname;
+		this.emailId = emailId;
+		this.age = age;
+		this.ph = ph;
+		this.gender = gender;
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+	public String getFname() {
+		return fname;
+	}
+
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+
+	public String getLname() {
+		return lname;
+	}
+
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+
+	public int getAge() {
+		return age;
+	}
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+	public long getPh() {
+		return ph;
+	}
+
+
+	public void setPh(long ph) {
+		this.ph = ph;
+	}
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", fname=" + fname + ", lname=" + lname + ", emailId=" + emailId + ", age="
+				+ age + ", ph=" + ph + ", gender=" + gender + "]";
+	}
+	
+}

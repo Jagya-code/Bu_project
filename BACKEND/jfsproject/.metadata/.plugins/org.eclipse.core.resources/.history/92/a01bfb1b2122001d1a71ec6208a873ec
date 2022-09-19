@@ -1,0 +1,13 @@
+package com.traininfoservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TrainInfoServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TrainInfoServiceApplication.class, args);
+	}
+
+}

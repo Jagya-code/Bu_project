@@ -1,0 +1,9 @@
+server.port= 8031
+datasource.url=jdbc:postgresql://localhost:5432/traininfo
+spring.daspring.datasource.driver-class-name=org.postgresql.Driver
+spring.tasource.username=postgres
+spring.datasource.password=1234
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+
+spring.application.name=train-info-service

@@ -1,0 +1,5 @@
+package com.handlerinfo.entity;
+
+public class AuthenticationRequest {
+
+}

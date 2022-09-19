@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;UserModel.java&apos; to &apos;spring-security-jwt/src/main/java/com.springsecurity.models&apos;&#x0D;&#x0A;- Original project: &apos;handler-info-service&apos;&#x0D;&#x0A;- Destination element: &apos;spring-security-jwt/src/main/java/com.springsecurity.models&apos;&#x0D;&#x0A;- Original element: &apos;com.handlerinfo.model.UserModel.java&apos;" description="Copy compilation unit" destination="=spring-security-jwt/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.springsecurity.models" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.handlerinfo.model{UserModel.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1662008828140" units="1" version="1.0"/>
+</session>

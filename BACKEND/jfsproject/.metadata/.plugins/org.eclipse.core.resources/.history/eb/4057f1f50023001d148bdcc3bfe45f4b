@@ -1,0 +1,28 @@
+package com.traininfoservice.repository;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ResponseEntity;
+
+import com.traininfoservice.model.Train;
+import com.traininfoservice.resource.TrainController;
+@SpringBootTest
+public class TestController {
+@MockBean
+	private TrainsRepository trepo;
+@Autowired
+	private TrainController tcon;
+@Test
+	public void insertTrainTest() {
+		Train train = new Train("5", "bibhuti", "kolkata", null, "delhi", null, 800.0);
+		trepo.save(train);
+
+		ResponseEntity<Object> actualResult = tcon.getAllTrainDetailById("5");
+		assertNotNull(actualResult);
+	}
+
+}

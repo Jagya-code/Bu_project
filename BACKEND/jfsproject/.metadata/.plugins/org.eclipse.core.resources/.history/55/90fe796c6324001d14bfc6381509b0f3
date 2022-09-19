@@ -1,0 +1,5 @@
+package com.handlerinfo.model;
+
+public class Admin {
+
+}

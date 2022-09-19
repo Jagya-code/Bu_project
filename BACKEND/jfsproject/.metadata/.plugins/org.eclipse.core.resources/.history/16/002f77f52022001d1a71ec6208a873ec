@@ -1,0 +1,5 @@
+package com.traininfoservice.resource;
+
+public class TrainController {
+
+}

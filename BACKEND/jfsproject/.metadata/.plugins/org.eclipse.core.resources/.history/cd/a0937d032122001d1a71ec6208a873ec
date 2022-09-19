@@ -1,0 +1,5 @@
+package com.traininfoservice.model;
+
+public class Train {
+
+}

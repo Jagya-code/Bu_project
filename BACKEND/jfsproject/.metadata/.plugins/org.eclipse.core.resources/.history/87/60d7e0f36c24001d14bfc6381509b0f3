@@ -1,0 +1,59 @@
+package com.handlerinfo.model;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+@Document(collection = "admin")
+public class Admin {
+	@Id
+	private int id;
+	@Field
+	private String password;
+	@Field
+	private String fname;
+	@Field
+	private String lname;
+	public Admin() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Admin(int id, String password, String fname, String lname) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.fname = fname;
+		this.lname = lname;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+	@Override
+	public String toString() {
+		return "Admin [id=" + id + ", password=" + password + ", fname=" + fname + ", lname=" + lname + "]";
+	}
+	
+
+}

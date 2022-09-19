@@ -1,0 +1,5 @@
+package com.bookinginfoservice.service;
+
+public class TicketController {
+
+}

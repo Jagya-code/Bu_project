@@ -1,0 +1,5 @@
+package com.bookinginfoservice.configuration;
+
+public class MessageConsumer {
+
+}

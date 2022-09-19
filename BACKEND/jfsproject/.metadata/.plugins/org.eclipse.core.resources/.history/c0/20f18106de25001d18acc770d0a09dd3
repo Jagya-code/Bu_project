@@ -1,0 +1,104 @@
+package com.handlerinfo.resource;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.bson.json.JsonObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClient.RequestBodySpec;
+
+import com.handlerinfo.model.Admin;
+import com.handlerinfo.model.Booking;
+import com.handlerinfo.model.Train;
+
+import com.handlerinfo.service.AdminServices;
+
+import reactor.core.publisher.Mono;
+
+@RequestMapping("/admin")
+@RestController
+public class AdminController {
+	@Autowired
+	private AdminServices adminservice;
+	@Autowired
+	private WebClient.Builder webClientBuilder;
+	@Autowired
+	private RestTemplate restt;
+
+	@PostMapping("/{i}")
+	public Admin insertAdmin(@RequestBody Admin admin) {
+
+		Optional<Admin> op = adminservice.findById(admin.getId());
+		if (op.isPresent()) {
+			return admin;
+		} else {
+			System.out.println("Data saved !!");
+			Admin u = adminservice.save(admin);
+
+			System.out.println(u);
+			return u;
+		}
+	}
+
+//	@GetMapping("/ga/{Admin_no}")
+//	public Admin getAllAdminDetailById(@PathVariable("Admin_no") String Admin_no){
+//		Optional<Admin> op=adminservice.findById(Admin_no);
+//		Admin t=op.get();
+//		if(op.isPresent()) {
+//			
+//			return t;
+//		}
+//		else {
+//			return null;
+//		}
+//	}
+//	@GetMapping("/g")
+//	public List<Admin> getAllAdminDetails(){
+//		List<Admin> list = new ArrayList();
+//		adminservice.findAllDetails().forEach(list::add);
+//		return list;	
+//	}
+	@PutMapping("/u/{id}")
+	public Admin UpdateAdminRecordId(@PathVariable("id") int id, @RequestBody Admin admin) {
+		Optional<Admin> op = adminservice.findById(id);
+		if (op.isPresent()) {
+			Admin a = op.get();
+			a.setFname(admin.getFname());
+			a.setLname(admin.getLname());
+			a.setPassword(admin.getPassword());
+
+			adminservice.save(a);
+			return a;
+		} else {
+			return null;
+		}
+	}
+
+
+	@PostMapping("/p/t")
+	public Train insertTrainInfo(@RequestBody Train train) {
+
+		Train t1 = restt.postForObject("http://localhost:8031/traindetails/i", train, Train.class);
+		return t1;
+	}
+	@GetMapping("/b")
+	public List<Booking> getBookingInfo() {
+		 List<Booking> book=
+				 webClientBuilder.build().get().uri("http://localhost:8041/bookingdetails/g")
+				 .retrieve().bodyToMono(List.class).block();
+//		List<Train> train = resttemplate.getForObject("http://localhost:8031/traindetails/g", List.class);
+		 		return book;
+
+	}
+
+}

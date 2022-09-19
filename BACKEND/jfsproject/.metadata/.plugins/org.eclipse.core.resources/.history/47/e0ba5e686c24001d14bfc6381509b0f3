@@ -1,0 +1,88 @@
+package com.handlerinfo.resource;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.reactive.function.client.WebClient;
+
+import com.handlerinfo.model.Admin;
+import com.handlerinfo.model.Train;
+
+import com.handlerinfo.service.AdminServices;
+
+@RequestMapping("/admin")
+public class AdminController {
+	@Autowired
+	private AdminServices adminservice;
+	@Autowired
+	private WebClient.Builder webClientBuilder;
+
+	@PostMapping("/{i}")
+	public Admin insertAdmin(@RequestBody Admin admin) {
+
+		Optional<Admin> op = adminservice.findById(admin.getId());
+		if (op.isPresent()) {
+			return admin;
+		} else {
+			System.out.println("Data saved !!");
+			Admin u = adminservice.save(admin);
+
+			System.out.println(u);
+			return u;
+		}
+	}
+
+//	@GetMapping("/ga/{Admin_no}")
+//	public Admin getAllAdminDetailById(@PathVariable("Admin_no") String Admin_no){
+//		Optional<Admin> op=adminservice.findById(Admin_no);
+//		Admin t=op.get();
+//		if(op.isPresent()) {
+//			
+//			return t;
+//		}
+//		else {
+//			return null;
+//		}
+//	}
+//	@GetMapping("/g")
+//	public List<Admin> getAllAdminDetails(){
+//		List<Admin> list = new ArrayList();
+//		adminservice.findAllDetails().forEach(list::add);
+//		return list;	
+//	}
+	@PutMapping("/u/{id}")
+	public Admin UpdateOrderById1(@PathVariable("id") int id, @RequestBody Admin admin) {
+		Optional<Admin> op = adminservice.findById(id);
+		if (op.isPresent()) {
+			Admin a = op.get();
+			a.setFname(admin.getFname());
+			a.setLname(admin.getLname());
+			a.setPassword(admin.getPassword());
+
+			adminservice.save(a);
+			return a;
+		} else {
+			return null;
+		}
+	}
+
+	@PostMapping("/p")
+	public Train insertTrainInfo() {
+		
+		return webClientBuilder.build().post().uri("http://localhost:8031/traindetails/i").retrieve()
+				.bodyToMono(Train.class).block();
+		// List<Train> train =
+		// resttemplate.getForObject("http://localhost:8031/traindetails/g",
+		// List.class);
+
+	}
+
+}

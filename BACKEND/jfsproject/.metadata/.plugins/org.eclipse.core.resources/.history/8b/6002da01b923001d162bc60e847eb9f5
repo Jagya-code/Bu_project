@@ -1,0 +1,5 @@
+package com.handlerinfo.controller;
+
+public class UserController {
+
+}

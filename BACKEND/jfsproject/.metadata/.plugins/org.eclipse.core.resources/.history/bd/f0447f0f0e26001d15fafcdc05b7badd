@@ -1,0 +1,5 @@
+package com.handlerinfo.util;
+
+public class JwtUtil {
+
+}

@@ -1,0 +1,42 @@
+package com.handlerinfo.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.handlerinfo.model.User;
+import com.handlerinfo.repository.UserRepository;
+
+
+@Service
+public class UserServices {
+	
+	@Autowired
+	private UserRepository urepo;
+
+	public Optional<User> findById(int userId) {
+		// TODO Auto-generated method stub
+		return urepo.findById(userId);
+	}
+
+	public User save(User user) {
+		// TODO Auto-generated method stub
+		User u = urepo.save(user);
+		return u;
+	}
+
+
+	public Iterable<User> findAllDetails() {
+		// TODO Auto-generated method stub
+		return urepo.findAll();
+	}
+
+	public void deleteById(int userId) {
+		// TODO Auto-generated method stub
+		urepo.deleteById(userId);
+	}
+
+
+
+}
